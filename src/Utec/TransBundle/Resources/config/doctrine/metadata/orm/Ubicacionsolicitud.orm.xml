@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ubicacionsolicitud" table="ubicacionSolicitud">
+    <indexes>
+      <index name="IDX_B311634ECCF5C3E5" columns="id_paquete"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="latitud" type="float" column="latitud" precision="53" scale="0" nullable="false"/>
+    <field name="longitud" type="float" column="longitud" precision="53" scale="0" nullable="false"/>
+    <many-to-one field="idPaquete" target-entity="Paquetetransporte" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_paquete" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

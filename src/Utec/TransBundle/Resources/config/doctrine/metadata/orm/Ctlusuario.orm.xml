@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ctlusuario" table="ctlUsuario">
+    <indexes>
+      <index name="IDX_83E5A6972F1D22B0" columns="idRol"/>
+      <index name="IDX_83E5A697C10F6722" columns="idTipoUsuario"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="usuario" type="string" column="usuario" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="password" type="string" column="password" length="200" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="direccion" type="string" column="direccion" length="160" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="activo" type="boolean" column="activo" nullable="false"/>
+    <many-to-one field="idrol" target-entity="Ctlrol" fetch="LAZY">
+      <join-columns>
+        <join-column name="idRol" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idtipousuario" target-entity="Tipousuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="idTipoUsuario" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

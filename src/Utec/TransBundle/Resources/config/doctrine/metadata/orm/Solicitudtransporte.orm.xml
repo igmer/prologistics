@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Solicitudtransporte" table="solicitudTransporte">
+    <indexes>
+      <index name="IDX_DA3FD363BDEC92B8" columns="idMotorista"/>
+      <index name="IDX_DA3FD36364A8D091" columns="idUsuarioReg"/>
+      <index name="IDX_DA3FD3635F624904" columns="idPrioridad"/>
+      <index name="IDX_DA3FD3639A593C58" columns="idVehiculo"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="lugarrecoleccion" type="string" column="lugarRecoleccion" length="160" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fechahorarecoleccion" type="datetime" column="fechaHoraRecoleccion" nullable="false"/>
+    <field name="horafechareg" type="datetime" column="horaFechaReg" nullable="false"/>
+    <field name="activa" type="boolean" column="activa" nullable="true"/>
+    <field name="claverastreo" type="string" column="claveRastreo" length="8" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idmotorista" target-entity="Ctlempleado" fetch="LAZY">
+      <join-columns>
+        <join-column name="idMotorista" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idusuarioreg" target-entity="FosUserUser" fetch="LAZY">
+      <join-columns>
+        <join-column name="idUsuarioReg" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idprioridad" target-entity="Ctlprioridad" fetch="LAZY">
+      <join-columns>
+        <join-column name="idPrioridad" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idvehiculo" target-entity="CtlVehiculo" fetch="LAZY">
+      <join-columns>
+        <join-column name="idVehiculo" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
