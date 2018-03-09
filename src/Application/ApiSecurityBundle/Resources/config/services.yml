@@ -1,0 +1,13 @@
+services:
+    api_key_user_provider:
+        class: Application\ApiSecurityBundle\Security\ApiKeyUserProvider
+        arguments: ["@service_container"]
+
+    apikey_authenticator:
+        class:  Application\ApiSecurityBundle\Security\ApiKeyAuthenticator
+        arguments: ["@security.http_utils"]
+        public: false
+
+    api.authenticator:
+        class: Application\ApiSecurityBundle\Service\ApiSecurityService
+        arguments: ["@service_container"]

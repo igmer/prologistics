@@ -1,0 +1,8 @@
+application_soap:
+    resource: "@ApplicationSoapBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+ws_soap:
+    path: /soap/{service}
+    defaults: { _controller: ApplicationSoapBundle:WebServiceProvider:getWebService }

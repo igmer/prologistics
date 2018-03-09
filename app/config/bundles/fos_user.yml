@@ -1,0 +1,28 @@
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+        mailer: fos_user.mailer.default
+
+    profile:
+        # Authentication Form
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication]
+
+    registration:
+        confirmation:
+            enabled: true
+
+    from_email:
+        address:        plantilla@salud.gob.sv
+        sender_name:    Sistema Plantilla

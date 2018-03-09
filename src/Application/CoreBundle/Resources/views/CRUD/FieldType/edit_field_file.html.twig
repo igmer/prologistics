@@ -1,0 +1,30 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block file_widget %}
+    {% spaceless %}
+    {%- set type = type|default('file') -%}
+    <div class="input-group">
+        <span class="input-group-btn">
+            <span class="btn btn-primary btn-file">
+                Examinar
+                <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+            </span>
+        </span>
+        <input type="text" class="form-control" readonly="">
+    </div>
+
+    {% if directory is defined and directory is not null %}
+        {% set display_name = display_name|default('unknow') %}
+        {% set thumbnail    = thumbnail|default(false) %}
+        {% set img_width    = img_width|default('auto') %}
+        {% set img_height   = img_height|default('140/px') %}
+        {% set file_type    = file_type|default('document/unknow') %}
+        {% set directory    = directory|default('documents') %}
+        {% set horizontal_align = horizontal_align|default('left') %}
+
+        <div style="padding-top:15px;"></div>
+        {% include 'ApplicationCoreBundle:CRUD:FieldType/widget_file_thumbnail.html.twig' %}
+    {% endif %}
+
+    {% endspaceless %}
+{% endblock %}

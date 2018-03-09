@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://dominio/app.php/soap" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap1="http://schemas.xmlsoap.org/wsdl/soap1/" name="servicio1" targetNamespace="urn:servicio1">
+    <types>
+        <xsd:schema targetNamespace="urn:servicio1">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+        </xsd:schema>
+    </types>
+
+    <portType name="servicio1PortType">
+        <operation name="obtenerUsuarios" >
+            <input message="tns:obtenerUsuariosRequest"/>
+            <output message="tns:obtenerUsuariosResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="servicio1Binding" type="tns:servicio1PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="obtenerUsuarios">
+            <soap:operation soapAction="urn:servicio1#obtenerUsuarios"/>
+            <input>
+                <soap:body use="literal" namespace="urn:servicio1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body use="literal" namespace="urn:servicio1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="servicio1">
+        <port name="servicio1Port" binding="tns:servicio1Binding">
+            <soap:address location="http://dominio/app_dev.php/soap/ejemplowebservice"/>
+        </port>
+    </service>
+
+    <message name="obtenerUsuariosRequest">
+        <part name="establecimiento" type="xsd:string"/>
+    </message>
+    <message name="obtenerUsuariosResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+</definitions>

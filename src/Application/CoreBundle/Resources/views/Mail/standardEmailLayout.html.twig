@@ -1,0 +1,42 @@
+<tbody>
+	<div style="width:600px;">
+		<tr>
+			<td>
+			{% block logo %}
+				<div style="background-color:#FAFAFA;text-align:center;">
+					<img alt="SIS" width="600" src="{{ baseurl }}{{ asset('bundles/applicationcore/images/banner_small.png') }}">
+				</div>
+			{% endblock %}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{% block headEmail %}
+					<p>Encabezado del mensaje</p>
+				{% endblock %}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style="width:100%;background-color: #F9F9F9;">
+					<center>
+						{% block bodyEmail %}
+							<p>Cuerpo del Mensaje</p>
+						{% endblock %}
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{% block footerEmail %}
+					<div style="color:#E6E6E6;background-color:#424242;padding: 10px 10px 10px 15px;font-weight:bold;font-size:12px;text-align:center;font-family:sans-serif,arial;">
+						Sistema Inform&aacute;tico de Mantenimiento
+						<br />
+						DTIC - MINSAL
+					</div>
+				{% endblock %}
+			</td>
+		</tr>
+	</div>
+</tbody>

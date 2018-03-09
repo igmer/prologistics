@@ -1,0 +1,376 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% use 'ApplicationCoreBundle::acercaDe.html.twig' %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/applicationcore/images/escudo.png') }}" type="image/png" rel="Shortcut Icon">
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/applicationcore/css/AdminLTE.css') }}" type="text/css" media="all" />
+    {%- if app.user.getId() is defined %}
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/css/commonstyle.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/css/corelayout.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/jasny-bootstrap/css/jasny-bootstrap.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/css/bootstrap.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/iCheck/flat/_all.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/dataTables.bootstrap.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/buttons.dataTables.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/clockpicker/dist/bootstrap-clockpicker.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/waitMe/waitMe.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/fullcalendar/fullcalendar.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/applicationcore/vendors/fullcalendar/fullcalendar.print.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" />
+    {% endif -%}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {%- if app.user.getId() is defined %}
+        <script src="{{ asset('bundles/applicationcore/vendors/moment/moment.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/jasny-bootstrap/js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/clockpicker/dist/bootstrap-clockpicker.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/js/jqDoubleScroll.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.es-ES.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/buttons.html5.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/buttons.print.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/jszip.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/pdfmake.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/AdminLTE/plugins/datatables/plugins/buttons/vfs_fonts.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/js/commonscript.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/js/corelayout.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/waitMe/waitMe.min.js') }}"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/applicationcore/vendors/fullcalendar/locale-all.js') }}" type="text/javascript"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}" ></script>
+        <script type="text/javascript">
+            var lastUsed  = 0;
+            var remaining = 0;
+            var lapse     = 0;
+            var limit     = {{ max_iddle_time }};
+            var url       = '{{ path("sonata_user_admin_security_login") }}';
+            var interval  = 5000;
+            var execTime  = time();
+
+            idleSession(true);
+            function showAbout() {
+                return '{% spaceless %}{{- block("about_content")|replace({"\n":""})|raw -}}{% endspaceless %}';
+            }
+            jQuery(document).ready(function($) {
+              /*AGREGANDO FUNCIONALIDAD DE ACERCA DE*/
+              var eAbout = $('#about_info_modal');
+               eAbout.on('click', function () {
+                   modal_elements.push({
+                       id: 'about_info_modal',
+                       header: 'Acerca de',
+                       func: 'showAbout',
+                       footer: 'Ministerio de Salud - DTIC, &copy; {{ "now" | date('Y')}} Todos los derechos reservados.',
+                       widthModal: '750px'
+                   });
+               });
+
+                $.ajaxSetup({
+                    complete: function(xhr, textStatus) {
+                        var found = this.url.search('sis/timeInfo');
+                        if(found === -1) {
+                            idleSession();
+                        }
+                    }
+                });
+            });
+
+            function idleSession(flag) {
+                if(limit > 0) {
+                    if( (time() - execTime) > (interval/1000) || flag === true) {
+                        execTime  = time();
+
+                        jQuery.ajax({
+            			    url: Routing.generate('timeInfo'),
+            			    async: true,
+            			    dataType: 'json',
+                            success: function(data) {
+                                if(data.status === null || data.status === false) {
+                                    reloadPage();
+                                } else {
+                                    lastUsed  = data.time;
+                                    lapse     = time() - lastUsed;
+                                    remaining = limit - lapse;
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+
+            var idleInterval = setInterval(timeCheck, interval);
+
+            function timeCheck() {
+                remaining = remaining - (interval/1000);
+                if(remaining < 0) {
+                    idleSession(false);
+                }
+            }
+
+            function reloadPage() {
+                window.location.href = url;
+            }
+        </script>
+    {% endif -%}
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('aside.left-side').removeClass('left-side');
+            $("#collapse-button").css('display','none');
+            $('body').append('<div class="page-footer"><img class="dtic-footer" src="{{ asset("bundles/applicationcore/images/dtic.png") }}" alt="dtic"/>Direcci&oacute;n de Tecnolog&iacute;as de Informaci&oacute;n y Comunicaciones - Ministerio de Salud</div>');
+        });
+    </script>
+{% endblock %}
+
+{% block body_attributes %}class="sonata-bc"{% endblock %}
+
+{% block sonata_header %}
+    <header class="header">
+        {% block sonata_header_noscript_warning %}
+            <noscript>
+                <div class="noscript-warning">
+                    {{ 'noscript_warning'|trans({}, 'SonataAdminBundle') }}
+                </div>
+            </noscript>
+        {% endblock %}
+        {% block logo %}
+            <center>
+                <a class="logo" href="{{ url('sonata_admin_dashboard') }}">
+                    <img id="img-large" class="banner" src="{{ asset('bundles/applicationcore/images/banner.png') }}" alt="{{ admin_pool.title }}">
+                    <img id="img-small" class="banner" src="{{ asset('bundles/applicationcore/images/banner_small.png') }}" alt="{{ admin_pool.title }}">
+                </a>
+            </center>
+        {% endblock %}
+
+        {# Creacion del Menu #}
+        {% block sonata_nav %}
+            {% if admin_pool is defined %}
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+
+                        <div class="navbar-left">
+                            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                {% block sonata_side_nav %}
+                                    {% block sonata_sidebar_search %}
+                                    {% endblock sonata_sidebar_search %}
+
+                                    {% block side_bar_before_nav %} {% endblock %}
+                                    {% block side_bar_nav %}
+                                        {% if app.user and is_granted('ROLE_SONATA_ADMIN') %}
+                                            {% set cus_menu = knp_menu_get('ApplicationCoreBundle:MenuBuilder:mainMenu', [], {'admin': admin_pool.dashboardgroups, 'user':app.user}) %}
+                                            {{ knp_menu_render(cus_menu, {'currentClass': 'active', 'template': 'ApplicationCoreBundle:Menu:knp_menu.html.twig'}) }}
+                                        {% endif %}
+                                    {% endblock side_bar_nav %}
+                                    {% block side_bar_after_nav %}
+                                    {% endblock %}
+                                {% endblock sonata_side_nav %}
+                            </div>
+                        </div>
+
+                        {% block sonata_top_nav_menu %}
+                            <div class="navbar-right">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown user-menu">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            {# Cambiar por el idEmpleado cuando ya se haya creado una talba de empleado y enlazado con el usuario #}
+                                            {# {% if app.user.getIdEmpleado() is not null and app.user.getIdEmpleado().getSexo() is sameas('M') %}{% set profile_type = 'man'%}{% else %}{% set profile_type = 'woman'%}{% endif %} #}
+                                            {% if app.user.getGender() is not null %}
+                                                {% if app.user.getGender()|upper is same as('M') %}
+                                                    {% set profile_type = 'man' %}
+                                                {% else %}
+                                                    {% if app.user.getGender()| upper is same as('F') %}
+                                                        {% set profile_type = 'woman' %}
+                                                    {% else %}
+                                                        {% set profile_type = 'man' %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set profile_type = 'man' %}
+                                            {% endif %}
+                                            <img src="{{ asset('bundles/applicationcore/images/generic-profile-picture-' ~ profile_type ~ '.png') }}" class="user-image" alt="User Image">
+                                            {# Cambiar por el idEmpleado cuando ya se haya creado una talba de empleado y enlazado con el usuario #}
+                                            {# <span><strong>{{ app.user.getIdEmpleado() ? app.user.getIdEmpleado().getNombre() ~ ' ' ~ app.user.getIdEmpleado().getApellido() : app.user }}</strong> <i class="fa fa-caret-down"></i></span> #}
+                                            <span><strong>{{ app.user.getFirstname() ? app.user.getFirstname() ~ " " ~ app.user.getLastname() : app.user }}</strong> <i class="fa fa-caret-down"></i></span>
+                                        </a>
+                                        {#<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                        </a>#}
+                                        <ul class="dropdown-menu dropdown-user">
+                                            {% include 'SonataAdminBundle::user_block.html.twig' %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endblock %}
+                    </div>    <!--Container Fluid-->
+                </nav>
+            {% endif %}
+        {% endblock sonata_nav %}
+        {# Fin del Bloque de Menu #}
+    </header>
+{% endblock sonata_header %}
+
+{% block sonata_left_side %}
+{% endblock sonata_left_side %}
+
+{% block sonata_page_content %}
+    <section class="content-header">
+        {% block sonata_breadcrumb %}
+            <div class="hidden-xs">
+                {% if _breadcrumb is not empty or action is defined %}
+                    <ol class="nav navbar-top-links breadcrumb">
+                        {% if _breadcrumb is empty %}
+                            {% if action is defined %}
+                                {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                                    {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                                    {%- set label = menu.label -%}
+                                    {%- if translation_domain is not same as(false) -%}
+                                        {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                                    {%- endif -%}
+
+                                    {% if not loop.last %}
+                                        <li>
+                                            {% if menu.uri is not empty %}
+                                                <a href="{{ menu.uri }}">
+                                                    {% if menu.extra('safe_label', true) %}
+                                                        {{- label|raw -}}
+                                                    {% else %}
+                                                        {{- label -}}
+                                                    {% endif %}
+                                                </a>
+                                            {% else %}
+                                                <span>{{ label }}</span>
+                                            {% endif %}
+                                        </li>
+                                    {% else %}
+                                        <li class="active"><span>{{ label }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            {{ _breadcrumb|raw }}
+                        {% endif %}
+                    </ol>
+                {% endif %}
+            </div>
+        {% endblock sonata_breadcrumb %}
+
+        {% block sonata_page_content_header %}
+            {% block sonata_page_content_nav %}
+                {% if _tab_menu is not empty or _actions is not empty or _list_filters_actions is not empty %}
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            {% block tab_menu_navbar_header %}
+                                {% if _navbar_title is not empty %}
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="#">{{ _navbar_title|raw }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            <div class="navbar-collapse">
+                                <div class="navbar-left">
+                                    {% if _tab_menu is not empty %}
+                                        {{ _tab_menu|raw }}
+                                    {% endif %}
+                                </div>
+
+                                {#{% if admin is defined and action is defined and action == 'list' and admin.listModes|length > 1 %}
+                                    <div class="nav navbar-right btn-group">
+                                        {% for mode, settings in admin.listModes %}
+                                            <a href="{{ admin.generateUrl('list', app.request.query.all|merge({_list_mode: mode})) }}" class="btn btn-default navbar-btn btn-sm{% if admin.getListMode() == mode %} active{% endif %}"><i class="{{ settings.class }}"></i></a>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}#}
+
+                                {% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
+                                    <ul class="nav navbar-nav navbar-right">
+                                    {% if _actions|split('<li>')|length > 2 %}
+                                        <li class="dropdown sonata-actions">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'link_actions'|trans({}, 'SonataAdminBundle') }} <b class="caret"></b></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                {{ _actions|raw }}
+                                            </ul>
+                                        </li>
+                                    {% else %}
+                                        {{ _actions|raw }}
+                                    {% endif %}
+                                    </ul>
+                                {% endif %}
+
+                                {% if _list_filters_actions is not empty %}
+                                    {{ _list_filters_actions|raw }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </nav>
+                {% endif %}
+            {% endblock sonata_page_content_nav %}
+        {% endblock sonata_page_content_header %}
+    </section>
+
+    <section class="content-header">
+        {% block additional_header %}
+        {% endblock additional_header %}
+    </section>
+
+    <section class="content">
+        {% block sonata_admin_content %}
+
+            {% block notice %}
+                {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+            {% endblock notice %}
+
+            {% if _preview is not empty %}
+                <div class="sonata-ba-preview">{{ _preview|raw }}</div>
+            {% endif %}
+
+            {% if _content is not empty %}
+                <div class="sonata-ba-content">{{ _content|raw }}</div>
+            {% endif %}
+
+            {% if _show is not empty %}
+                <div class="sonata-ba-show">{{ _show|raw }}</div>
+            {% endif %}
+
+            {% if _form is not empty %}
+                <div class="sonata-ba-form">{{ _form|raw }}</div>
+            {% endif %}
+
+            {% if _list_table is not empty or _list_filters is not empty %}
+                {% if _list_filters|trim %}
+                    <div class="row">
+                        {{ _list_filters|raw }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    {{ _list_table|raw }}
+                </div>
+
+            {% endif %}
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

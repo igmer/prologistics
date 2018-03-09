@@ -1,0 +1,29 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+{% spaceless %}
+    {% if value is empty %}
+        &nbsp;
+    {% else %}
+        {% set display_name = value %}
+        {% set thumbnail    = field_description.options.thumbnail|default(false) %}
+        {% set img_width    = field_description.options.img_width|default('auto') %}
+        {% set img_height   = field_description.options.img_height|default('140/px') %}
+        {% set file_type    = field_description.options.file_type|default('document/unknow') %}
+        {% set directory    = field_description.options.directory %}
+
+        {% include 'ApplicationCoreBundle:CRUD:FieldType/widget_file_thumbnail.html.twig' %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

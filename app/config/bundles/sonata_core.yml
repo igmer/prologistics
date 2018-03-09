@@ -1,0 +1,6 @@
+sonata_core:
+    flashmessage:
+        warning:
+            types:
+                - { type: sonata_flash_warning, domain: SonataCoreBundle }
+                - { type: session_expired_warning, domain: SonataCoreBundle }

@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{#
+ # Objetivo: Eliminar el boton de agregar nuevo cuando se encuentra en el formulario de de agregar nuevo
+ #}
+
+{% block actions %}
+    <li>{% include 'SonataAdminBundle:Button:show_button.html.twig' %}</li>
+    {% if admin.hasRoute('create') and admin.id(object) and admin.isGranted('CREATE', object)%}
+        <li>{% include 'SonataAdminBundle:Button:create_button.html.twig' %}</li>
+    {% endif %}
+    <li>{% include 'SonataAdminBundle:Button:history_button.html.twig' %}</li>
+    <li>{% include 'SonataAdminBundle:Button:list_button.html.twig' %}</li>
+{% endblock %}

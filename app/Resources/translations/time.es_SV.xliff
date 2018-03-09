@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>diff.ago.year</source>
+                <target>hace 1 año|hace %count% años</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>diff.ago.month</source>
+                <target>hace 1 mes|hace %count% meses</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>diff.ago.day</source>
+                <target>hace 1 día|hace %count% días</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>diff.ago.hour</source>
+                <target>hace 1 hora|hace %count% horas</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>diff.ago.minute</source>
+                <target>hace 1 minuto|hace %count% minutos</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>diff.ago.second</source>
+                <target>hace 1 segundo|hace %count% segundos</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>diff.empty</source>
+                <target>ahora</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>diff.in.second</source>
+                <target>dentro de 1 segundo|dentro de %count% segundos</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>diff.in.hour</source>
+                <target>dentro de 1 hora|dentro de %count% horas</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>diff.in.minute</source>
+                <target>dentro de 1 minuto|dentro de %count% minutos</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>diff.in.day</source>
+                <target>dentro de 1 día|dentro de %count% días</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>diff.in.month</source>
+                <target>dentro de 1 mes|dentro de %count% meses</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>diff.in.year</source>
+                <target>dentro de 1 año|dentro de %count% años</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>diff.year</source>
+                <target>1 año|%count% años</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>diff.month</source>
+                <target>1 mes|%count% meses</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>diff.day</source>
+                <target>1 día|%count% días</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>diff.hour</source>
+                <target>1 hora|%count% horas</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>diff.minute</source>
+                <target>1 minuto|%count% minutos</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>diff.second</source>
+                <target>1 segundo|%count% segundos</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,4 @@
+services:
+#    utec_transporte.example:
+#        class: Utec\TransporteBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

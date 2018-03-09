@@ -1,0 +1,112 @@
+.navbar-nav>.user-menu .user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.login-box-body, .register-box-body {
+    border: 1px solid #d2d6de;
+    border-radius: 4px;
+    box-shadow: 10px 10px 10px #d2d6de;
+}
+
+.login-page, .register-page {
+    background: #FFFFFF;
+}
+
+.content-wrapper, .right-side {
+    background-color: #FFFFFF;
+}
+
+.content-wrapper, .right-side, .main-footer {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.content-wrapper {
+    min-height: inherit !important;
+}
+
+
+.navbar-nav>.user-menu>.dropdown-menu {
+    width: inherit;
+}
+
+.content, .right-side {
+    background: #fdfdfd;
+}
+
+.wysihtml5-offscrren {
+    width: 1px!important;
+    height: 1px!important;
+    position: absolute!important;
+    display: inherit !important;
+}
+
+.wysihtml5-offscrren,
+.wysihtml5-offscrren:focus {
+    left: 50% !important;
+    top: auto !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    outline: 0 !important;
+}
+
+.btn-primary.btn-outline {
+    border: 1px solid #367fa9;
+}
+
+.btn-primary.btn-outline:hover, .btn-primary.btn-outline:active, .btn-primary.btn-outline:hover {
+    background-color: #367fa9 !important;
+}
+
+.btn-success.btn-outline {
+    border: 1px solid #008d4c;
+}
+
+.btn-success.btn-outline:hover, .btn-success.btn-outline:active, .btn-success.btn-outline:hover {
+    background-color: #008d4c !important;
+}
+
+.btn-info.btn-outline {
+    border: 1px solid #00c0ef;
+}
+
+.btn-info.btn-outline:hover, .btn-info.btn-outline:active, .btn-info.btn-outline:hover {
+    background-color: #00c0ef !important;
+}
+
+.btn-warning.btn-outline {
+    border: 1px solid #f39c12;
+}
+
+.btn-warning.btn-outline:hover, .btn-warning.btn-outline:active, .btn-warning.btn-outline:hover {
+    background-color: #f39c12 !important;
+}
+
+.btn-danger.btn-outline {
+    border: 1px solid #d73925;
+}
+
+.btn-danger.btn-outline:hover, .btn-danger.btn-outline:active, .btn-danger.btn-outline:hover {
+    background-color: #d73925 !important;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav>.user-menu>.dropdown-menu {
+        width: 100%;
+    }
+
+    .navbar-nav>.user-menu .user-image {
+        float: inherit !important;
+    }
+
+    .dropdown.user-menu {
+        text-align: right;
+    }
+}

@@ -1,0 +1,9 @@
+services:
+    ejemplowebservice:
+        class: Application\SoapBundle\Service\EjemploWebService
+        arguments: ["@service_container"]
+
+    soapClient:
+        class: Application\SoapBundle\Service\SoapClientService
+        arguments: [true, 1]
+        scope: prototype

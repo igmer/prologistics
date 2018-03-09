@@ -1,0 +1,59 @@
+{%- block widget_file_thumbnail -%}
+    {% if thumbnail %}
+        {% set dimensionWidth = img_width|split('/') %}
+        {% set width  = dimensionWidth[0]|default('auto') %}
+        {% set wScale = dimensionWidth[1]|default('') %}
+        {% set dimensionHeight = img_height|default('140/px')|split('/') %}
+        {% set height = file_type|split('/')[0]|lower is sameas('document') ? '64' : dimensionHeight[0] is not sameas(null) ? dimensionHeight[0] : '140' %}
+        {% set hScale = dimensionWidth[1]|default('px') %}
+
+        {% if horizontal_align|default('left') is sameas('left') %}
+            {% set hAlign = 'margin-right: auto;'%}
+        {% elseif  horizontal_align|default('left') is sameas('right') %}
+            {% set hAlign = 'margin-left: auto;'%}
+        {% else %}
+            {% set hAlign = 'margin-left: auto; margin-right: auto;'%}
+        {% endif %}
+
+        <div style="max-height: {{ (height|number_format(0) + 20) ~ hScale }}; display: table; text-align: center; {{ hAlign }}">
+            <img src="{{ path(
+                                'render_download_file', {
+                                    'name'       : display_name,
+                                    'directory'  : directory|escape('url'),
+                                    'file_type'  : file_type|lower|escape('url'),
+                                    'disposition': 'inline',
+                                    'thumbnail'  : true
+                                }
+                            )
+                        }}"
+                    style="width: {{ width ~ wScale }}; height: {{ height ~ hScale }}" class="img-rounded" />
+            <div style="text-align:center; width: {% if width is sameas('auto') %}140px{% else %}{{ width ~ wScale }}{% endif %}; margin-left: auto; margin-right:auto;">
+                <a href="{{ path(
+                                    'render_download_file', {
+                                        'name'       : display_name,
+                                        'directory'  : directory|escape('url'),
+                                        'file_type'  : file_type|lower|escape('url'),
+                                        'disposition': 'attachment',
+                                        'thumbnail'  : false
+                                    }
+                                )
+                            }}">
+                    <strong><i class="fa fa-download"></i> Descargar</strong>
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <a href="{{ path(
+                            'render_download_file', {
+                                'name'       : display_name,
+                                'directory'  : directory|escape('url'),
+                                'file_type'  : file_type|lower|escape('url'),
+                                'disposition': 'attachment',
+                                'thumbnail'  : false
+                            }
+                        )
+                    }}">
+            <strong><i class="fa fa-download"></i> Descargar</strong>
+        </a>
+    {% endif %}
+{%- endblock widget_file_thumbnail -%}
