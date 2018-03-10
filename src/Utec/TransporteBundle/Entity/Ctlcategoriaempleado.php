@@ -63,4 +63,9 @@ class Ctlcategoriaempleado
     {
         return $this->categoria;
     }
+
+    public function __toString()
+    {
+        return $this -> categoria ? $this -> categoria:'';
+    }
 }

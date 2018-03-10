@@ -2,3 +2,38 @@ services:
 #    utec_transporte.example:
 #        class: Utec\TransporteBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    utec_transporte.admin.ctldepartamento:
+        class: Utec\TransporteBundle\Admin\CtldepartamentoAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctldepartamento, UtecTransporteBundle:CtldepartamentoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Departamentos de País }
+
+    utec_transporte.admin.ctlmunicipio:
+        class: Utec\TransporteBundle\Admin\CtlmunicipioAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctlmunicipio, UtecTransporteBundle:CtlmunicipioAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }
+
+    utec_transporte.admin.ctlcategoriaempleado:
+        class: Utec\TransporteBundle\Admin\CtlcategoriaempleadoAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctlcategoriaempleado, UtecTransporteBundle:CtlcategoriaempleadoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Categorias de Empleado }
+
+    utec_transporte.admin.ctltipovehiculo:
+        class: Utec\TransporteBundle\Admin\CtltipovehiculoAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctltipovehiculo, UtecTransporteBundle:CtltipovehiculoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Tipo de Vehículo  }
+
+    utec_transporte.admin.ctl_vehiculo:
+        class: Utec\TransporteBundle\Admin\CtlVehiculoAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\CtlVehiculo, UtecTransporteBundle:CtlVehiculoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Vehiculos }
+
+    utec_transporte.admin.ctlempleado:
+        class: Utec\TransporteBundle\Admin\CtlempleadoAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctlempleado, UtecTransporteBundle:CtlempleadoAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Empleados }

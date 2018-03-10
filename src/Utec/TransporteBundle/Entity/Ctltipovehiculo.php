@@ -63,4 +63,9 @@ class Ctltipovehiculo
     {
         return $this->tipovehiculo;
     }
+    public function __toString()
+    {
+        return $this -> tipovehiculo ? $this -> tipovehiculo:'';
+    }
+    
 }

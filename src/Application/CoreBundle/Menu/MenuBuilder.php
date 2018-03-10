@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class MenuBuilder extends ContainerAware {
 
     private $menu;
-    private $cat = array('CG' => array('label' => 'Catálogo' , 'icon' => 'fa fa-list'),
+    private $cat = array('CG' => array('label' => 'Catálogos' , 'icon' => 'fa fa-list'),
                          'AG' => array('label' => 'Administracion General' , 'icon' => 'fa fa-cog'),
                          'CO' => array('label' => 'Contrato' , 'icon' => 'fa fa-file'),
                          'SO' => array('label' => 'Solicitud' , 'icon' => 'fa fa-flag'),

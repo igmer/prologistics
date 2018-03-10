@@ -69,7 +69,7 @@ class Solicitudtransporte
     /**
      * @var \FosUserUser
      *
-     * @ORM\ManyToOne(targetEntity="FosUserUser")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idUsuarioReg", referencedColumnName="id")
      * })
@@ -255,11 +255,11 @@ class Solicitudtransporte
     /**
      * Set idusuarioreg
      *
-     * @param \Utec\TransporteBundle\Entity\FosUserUser $idusuarioreg
+     * @param \Application\Sonata\UserBundle\Entity\User $idusuarioreg
      *
      * @return Solicitudtransporte
      */
-    public function setIdusuarioreg(\Utec\TransporteBundle\Entity\FosUserUser $idusuarioreg = null)
+    public function setIdusuarioreg(\Application\Sonata\UserBundle\Entity\User $idusuarioreg = null)
     {
         $this->idusuarioreg = $idusuarioreg;
 
@@ -269,7 +269,7 @@ class Solicitudtransporte
     /**
      * Get idusuarioreg
      *
-     * @return \Utec\TransporteBundle\Entity\FosUserUser
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getIdusuarioreg()
     {

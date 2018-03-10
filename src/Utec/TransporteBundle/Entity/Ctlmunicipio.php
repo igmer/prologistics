@@ -31,12 +31,14 @@ class Ctlmunicipio
     /**
      * @var \Ctldepartamento
      *
-     * @ORM\ManyToOne(targetEntity="Ctldepartamento")
+     * @ORM\ManyToOne(targetEntity="Ctldepartamento", inversedBy="departamento  Detalle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idDepartamento", referencedColumnName="id")
      * })
      */
     private $iddepartamento;
+
+
 
 
 
@@ -96,5 +98,10 @@ class Ctlmunicipio
     public function getIddepartamento()
     {
         return $this->iddepartamento;
+    }
+
+    public function __toString()
+    {
+        return $this -> nombre ? $this -> nombre:'';
     }
 }

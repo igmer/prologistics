@@ -45,7 +45,7 @@ class ApiOpenSessions
     /**
      * @var \FosUserUser
      *
-     * @ORM\ManyToOne(targetEntity="FosUserUser")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      * })
@@ -139,11 +139,11 @@ class ApiOpenSessions
     /**
      * Set idUsuario
      *
-     * @param \Utec\TransporteBundle\Entity\FosUserUser $idUsuario
+     * @param \Application\Sonata\UserBundle\Entity\User $idUsuario
      *
      * @return ApiOpenSessions
      */
-    public function setIdUsuario(\Utec\TransporteBundle\Entity\FosUserUser $idUsuario = null)
+    public function setIdUsuario(\Application\Sonata\UserBundle\Entity\User $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
@@ -153,7 +153,7 @@ class ApiOpenSessions
     /**
      * Get idUsuario
      *
-     * @return \Utec\TransporteBundle\Entity\FosUserUser
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getIdUsuario()
     {

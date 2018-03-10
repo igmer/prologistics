@@ -63,4 +63,8 @@ class Ctlestadovehiculo
     {
         return $this->estado;
     }
+    public function __toString()
+    {
+        return $this -> estado ? $this -> estado:'';
+    }
 }

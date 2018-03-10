@@ -35,6 +35,13 @@ class Ctldepartamento
      */
     private $nombre;
 
+    /**
+    *
+    * @ORM\OneToMany(targetEntity="Ctlmunicipio", mappedBy="iddepartamento", cascade={"all"}, orphanRemoval=true)
+    *
+    */
+   private $departamentoDetalle;
+
 
 
     /**
@@ -93,5 +100,51 @@ class Ctldepartamento
     public function getNombre()
     {
         return $this->nombre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->departamentoDetalle = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add departamentoDetalle
+     *
+     * @param \Utec\TransporteBundle\Entity\Ctlmunicipio $departamentoDetalle
+     *
+     * @return Ctldepartamento
+     */
+    public function addDepartamentoDetalle(\Utec\TransporteBundle\Entity\Ctlmunicipio $departamentoDetalle)
+    {
+        $this->departamentoDetalle[] = $departamentoDetalle;
+
+        return $this;
+    }
+
+    /**
+     * Remove departamentoDetalle
+     *
+     * @param \Utec\TransporteBundle\Entity\Ctlmunicipio $departamentoDetalle
+     */
+    public function removeDepartamentoDetalle(\Utec\TransporteBundle\Entity\Ctlmunicipio $departamentoDetalle)
+    {
+        $this->departamentoDetalle->removeElement($departamentoDetalle);
+    }
+
+    /**
+     * Get departamentoDetalle
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDepartamentoDetalle()
+    {
+        return $this->departamentoDetalle;
+    }
+
+    public function __toString()
+    {
+        return $this -> nombre ? $this -> nombre:'';
     }
 }

@@ -224,4 +224,8 @@ class CtlVehiculo
     {
         return $this->idtipovehiculo;
     }
+    public function __toString()
+    {
+        return $this -> marca ? $this -> marca:'';
+    }
 }

@@ -1,7 +1,7 @@
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
-    title:      SIS - PLANTILLA
+    title:      UTEC - PROLOGISTICS
     title_logo: /bundles/applicationcore/images/escudo.png
     templates:
             # default global templates

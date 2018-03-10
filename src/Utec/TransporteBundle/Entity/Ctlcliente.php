@@ -52,7 +52,7 @@ class Ctlcliente
     /**
      * @var \FosUserUser
      *
-     * @ORM\ManyToOne(targetEntity="FosUserUser")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      * })
@@ -170,11 +170,11 @@ class Ctlcliente
     /**
      * Set idUsuario
      *
-     * @param \Utec\TransporteBundle\Entity\FosUserUser $idUsuario
+     * @param \Application\Sonata\UserBundle\Entity\User $idUsuario
      *
      * @return Ctlcliente
      */
-    public function setIdUsuario(\Utec\TransporteBundle\Entity\FosUserUser $idUsuario = null)
+    public function setIdUsuario(\Application\Sonata\UserBundle\Entity\User $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
@@ -184,7 +184,7 @@ class Ctlcliente
     /**
      * Get idUsuario
      *
-     * @return \Utec\TransporteBundle\Entity\FosUserUser
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getIdUsuario()
     {
