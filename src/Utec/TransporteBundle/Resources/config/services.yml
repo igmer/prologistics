@@ -37,3 +37,9 @@ services:
         arguments: [~, Utec\TransporteBundle\Entity\Ctlempleado, UtecTransporteBundle:CtlempleadoAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Empleados }
+
+    utec_transporte.admin.ctlcliente:
+        class: Utec\TransporteBundle\Admin\CtlclienteAdmin
+        arguments: [~, Utec\TransporteBundle\Entity\Ctlcliente, UtecTransporteBundle:CtlclienteAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: CG-1-Catálogos, label: Clientes }
