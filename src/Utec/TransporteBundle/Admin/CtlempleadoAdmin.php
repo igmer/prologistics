@@ -51,13 +51,29 @@ class CtlempleadoAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+        ->with('Datos Generales',array('class' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12'))
             ->add('nombre')
             ->add('apellido')
             ->add('telefono')
+        ->end()
+        ->with('Direccion',array('class' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12'))
             ->add('direccion')
             ->add('iddepartamento', null, array(
                 'label'=>'Departamento de Procedencia'
             ))
+        ->end()
+        ->with('Otros Datos',array('class' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12'))
+            ->add('idcategoria',null,array(
+                'label'=>'Categoria del Empleado'
+            ))
+            ->add('idUsuario',null,array(
+                'label'=>'Usuario'
+            ))
+            ->add('idgenero',null,array(
+                'label'=>'Genero'
+            ))
+        ->end()
+
         ;
     }
 
@@ -73,5 +89,18 @@ class CtlempleadoAdmin extends AbstractAdmin
             ->add('telefono')
             ->add('direccion')
         ;
+    }
+    public function getTemplate($name) {
+  	switch ($name) {
+      	case 'edit':
+      	return 'UtecTransporteBundle::CRUD/empleado/edit.html.twig';
+      	break;
+      	//case 'edit2':
+      	//return 'MinsalSivetvBundle::CRUD/PL-02/edit.html.twig';
+      	//break;
+      	default:
+      	return parent::getTemplate($name);
+      	break;
+  	 }
     }
 }

@@ -1,0 +1,94 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+ {% block sonata_tab_content %}
+ <div class="row">
+    <div class="col-md-12">
+        <div class="box box-solid box-primary">
+            <div class="box-header">
+                <h4 class="box-title"> Formualario de Empleados </p>
+                </h4>
+            </div>
+            <div class="box-body">
+                <div id="primero"></div>
+                <div class="sonata-ba-collapsed-fields">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.nombre) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.apellido) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                {{ form_row(form.telefono) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.iddepartamento) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.direccion) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                {{ form_row(form.idcategoria) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.idUsuario) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.idgenero) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ {% endblock %}

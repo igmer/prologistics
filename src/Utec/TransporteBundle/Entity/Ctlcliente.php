@@ -190,4 +190,8 @@ class Ctlcliente
     {
         return $this->idUsuario;
     }
+    public function __toString()
+    {
+        return $this -> nombrerepresentante ? $this -> nombrerepresentante:'';
+    }
 }

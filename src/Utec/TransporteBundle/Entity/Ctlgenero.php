@@ -63,4 +63,8 @@ class Ctlgenero
     {
         return $this->sexo;
     }
+    public function __toString()
+    {
+        return $this -> sexo ? $this -> sexo:'';
+    }
 }
