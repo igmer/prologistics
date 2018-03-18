@@ -31,11 +31,12 @@ class CtldepartamentoAdmin extends AbstractAdmin
 
             ->add('abreviatura')
             ->add('nombre')
+            ->add('departamentoDetalle')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
-                    'delete' => array(),
+
                 ),
             ))
         ;
@@ -68,6 +69,28 @@ class CtldepartamentoAdmin extends AbstractAdmin
             ->add('id')
             ->add('abreviatura')
             ->add('nombre')
+            ->add('departamentoDetalle')
         ;
     }
+
+    public function prePersist($dep) {
+           $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+       //    $can->setIdUsuarioReg($user);
+           //$can->setFechaHoraReg(new \DateTime());
+           foreach ($dep->getDepartamentoDetalle() as $detalle) {
+               $detalle->setIddepartamento($dep);
+           //    $detalle->setIdUsuarioReg($user);
+            //   $detalle->setFechaHoraReg(new \DateTime());
+           }
+       }
+       public function preUpdate($dep) {
+              $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+          //    $can->setIdUsuarioReg($user);
+              //$can->setFechaHoraReg(new \DateTime());
+              foreach ($dep->getDepartamentoDetalle() as $detalle) {
+                  $detalle->setIddepartamento($dep);
+              //    $detalle->setIdUsuarioReg($user);
+               //   $detalle->setFechaHoraReg(new \DateTime());
+              }
+          }
 }

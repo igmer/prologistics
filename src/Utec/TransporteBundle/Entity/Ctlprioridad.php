@@ -63,4 +63,8 @@ class Ctlprioridad
     {
         return $this->priridad;
     }
+    public function __toString()
+    {
+        return $this -> priridad ? $this -> priridad:'';
+    }
 }

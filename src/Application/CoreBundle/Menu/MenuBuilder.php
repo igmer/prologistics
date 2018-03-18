@@ -12,7 +12,7 @@ class MenuBuilder extends ContainerAware {
     private $menu;
     private $cat = array('CG' => array('label' => 'Catálogos' , 'icon' => 'fa fa-list'),
                          'AG' => array('label' => 'Administracion General' , 'icon' => 'fa fa-cog'),
-                         'CO' => array('label' => 'Contrato' , 'icon' => 'fa fa-file'),
+                         'TS' => array('label' => 'Solicitud' , 'icon' => 'fa fa-file'),
                          'SO' => array('label' => 'Solicitud' , 'icon' => 'fa fa-flag'),
                          'OT' => array('label' => 'Orden de Trabajo' , 'icon' => 'fa fa-wrench'),
                          'MP' => array('label' => 'Mantto. Preventivo' , 'icon' => 'fa fa-calendar'),

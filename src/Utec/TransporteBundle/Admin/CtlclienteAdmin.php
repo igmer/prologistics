@@ -59,7 +59,9 @@ class CtlclienteAdmin extends AbstractAdmin
             ))
             ->add('direccion')
             ->add('telefono')
-            ->add('idUsuario')
+            ->add('idUsuario', null,array(
+                'label'=>'Usuario'
+            ))
         ;
     }
 

@@ -45,7 +45,7 @@ class Paquetetransporte
     /**
      * @var \Solicitudtransporte
      *
-     * @ORM\ManyToOne(targetEntity="Solicitudtransporte")
+     * @ORM\ManyToOne(targetEntity="Solicitudtransporte",inversedBy="catalogoDetalle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idSolicitud", referencedColumnName="id")
      * })

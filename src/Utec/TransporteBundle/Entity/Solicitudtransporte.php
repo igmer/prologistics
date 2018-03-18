@@ -96,6 +96,13 @@ class Solicitudtransporte
      */
     private $idvehiculo;
 
+    /**
+    *
+    * @ORM\OneToMany(targetEntity="Paquetetransporte", mappedBy="idsolicitud", cascade={"all"}, orphanRemoval=true)
+    *
+    */
+   private $catalogoDetalle;
+
 
 
     /**
@@ -322,5 +329,46 @@ class Solicitudtransporte
     public function getIdvehiculo()
     {
         return $this->idvehiculo;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->catalogoDetalle = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add catalogoDetalle
+     *
+     * @param \Utec\TransporteBundle\Entity\Paquetetransporte $catalogoDetalle
+     *
+     * @return Solicitudtransporte
+     */
+    public function addCatalogoDetalle(\Utec\TransporteBundle\Entity\Paquetetransporte $catalogoDetalle)
+    {
+        $this->catalogoDetalle[] = $catalogoDetalle;
+
+        return $this;
+    }
+
+    /**
+     * Remove catalogoDetalle
+     *
+     * @param \Utec\TransporteBundle\Entity\Paquetetransporte $catalogoDetalle
+     */
+    public function removeCatalogoDetalle(\Utec\TransporteBundle\Entity\Paquetetransporte $catalogoDetalle)
+    {
+        $this->catalogoDetalle->removeElement($catalogoDetalle);
+    }
+
+    /**
+     * Get catalogoDetalle
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCatalogoDetalle()
+    {
+        return $this->catalogoDetalle;
     }
 }
