@@ -1,0 +1,22 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_dblib
+    database_host: 127.0.0.1
+    database_port: 1433
+    database_name: prolo
+    database_user: sa
+    database_password: Fernando$1304
+    mailer_transport: smtp
+    mailer_host: null
+    mailer_encryption: ssl
+    mailer_port: '465'
+    mailer_user: muser
+    mailer_password: mpassword
+    mailer_email: null
+    jasper_username: juser
+    jasper_password: jpassword
+    jasper_url: 'http://localhost:8080/jasperserver/services/repository?wsdl'
+    locale: es_SV
+    secret: df1ca40cfc425c4f34e654696720435a044b9ca9
+    session_max_idle_time: 900
+    api_idle_time: 60

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Solicitudtransporte
  *
- * @ORM\Table(name="solicitudTransporte", indexes={@ORM\Index(name="IDX_DA3FD363BDEC92B8", columns={"idMotorista"}), @ORM\Index(name="IDX_DA3FD36364A8D091", columns={"idUsuarioReg"}), @ORM\Index(name="IDX_DA3FD3635F624904", columns={"idPrioridad"}), @ORM\Index(name="IDX_DA3FD3639A593C58", columns={"idVehiculo"})})
+ * @ORM\Table(name="solicitudTransporte", indexes={@ORM\Index(name="IDX_DA3FD363BDEC92B8", columns={"idMotorista"}), @ORM\Index(name="IDX_DA3FD36364A8D091", columns={"idUsuarioReg"}), @ORM\Index(name="IDX_DA3FD3635F624904", columns={"idPrioridad"}), @ORM\Index(name="IDX_DA3FD3639A593C58", columns={"idVehiculo"}), @ORM\Index(name="IDX_DA3FD363E4A5F0D7", columns={"idCliente"})})
  * @ORM\Entity
  */
 class Solicitudtransporte
@@ -97,11 +97,22 @@ class Solicitudtransporte
     private $idvehiculo;
 
     /**
-    *
-    * @ORM\OneToMany(targetEntity="Paquetetransporte", mappedBy="idsolicitud", cascade={"all"}, orphanRemoval=true)
-    *
-    */
-   private $catalogoDetalle;
+     * @var \Ctlcliente
+     *
+     * @ORM\ManyToOne(targetEntity="Ctlcliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idCliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+    /**
+*
+* @ORM\OneToMany(targetEntity="Paquetetransporte", mappedBy="idsolicitud", cascade={"all"}, orphanRemoval=true)
+*
+*/
+private $catalogoDetalle;
+
 
 
 
@@ -262,11 +273,11 @@ class Solicitudtransporte
     /**
      * Set idusuarioreg
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $idusuarioreg
+     * @param \Application\Sonata\UserBundle\Entity\User$idusuarioreg
      *
      * @return Solicitudtransporte
      */
-    public function setIdusuarioreg(\Application\Sonata\UserBundle\Entity\User $idusuarioreg = null)
+    public function setIdusuarioreg(\Application\Sonata\UserBundle\Entity\User$idusuarioreg = null)
     {
         $this->idusuarioreg = $idusuarioreg;
 
@@ -276,7 +287,7 @@ class Solicitudtransporte
     /**
      * Get idusuarioreg
      *
-     * @return \Application\Sonata\UserBundle\Entity\User
+     * @return \Utec\TransporteBundle\Entity\FosUserUser
      */
     public function getIdusuarioreg()
     {
@@ -329,6 +340,30 @@ class Solicitudtransporte
     public function getIdvehiculo()
     {
         return $this->idvehiculo;
+    }
+
+    /**
+     * Set idcliente
+     *
+     * @param \Utec\TransporteBundle\Entity\Ctlcliente $idcliente
+     *
+     * @return Solicitudtransporte
+     */
+    public function setIdcliente(\Utec\TransporteBundle\Entity\Ctlcliente $idcliente = null)
+    {
+        $this->idcliente = $idcliente;
+
+        return $this;
+    }
+
+    /**
+     * Get idcliente
+     *
+     * @return \Utec\TransporteBundle\Entity\Ctlcliente
+     */
+    public function getIdcliente()
+    {
+        return $this->idcliente;
     }
     /**
      * Constructor

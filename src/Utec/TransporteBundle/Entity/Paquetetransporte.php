@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Paquetetransporte
  *
- * @ORM\Table(name="paqueteTransporte", indexes={@ORM\Index(name="IDX_61B7A11A6A385796", columns={"idSolicitud"}), @ORM\Index(name="IDX_61B7A11ACC10B87", columns={"idMunicipioDestino"})})
+ * @ORM\Table(name="paqueteTransporte", indexes={@ORM\Index(name="IDX_61B7A11A6A385796", columns={"idSolicitud"}), @ORM\Index(name="IDX_61B7A11ACC10B87", columns={"idMunicipioDestino"}), @ORM\Index(name="IDX_61B7A11A4D0C910D", columns={"idMunicipioOrigen"})})
  * @ORM\Entity
  */
 class Paquetetransporte
@@ -43,6 +43,13 @@ class Paquetetransporte
     private $apagar;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="lugarDestino", type="string", length=200, nullable=true)
+     */
+    private $lugardestino;
+
+    /**
      * @var \Solicitudtransporte
      *
      * @ORM\ManyToOne(targetEntity="Solicitudtransporte",inversedBy="catalogoDetalle")
@@ -61,6 +68,16 @@ class Paquetetransporte
      * })
      */
     private $idmunicipiodestino;
+
+    /**
+     * @var \Ctlmunicipio
+     *
+     * @ORM\ManyToOne(targetEntity="Ctlmunicipio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idMunicipioOrigen", referencedColumnName="id")
+     * })
+     */
+    private $idmunicipioorigen;
 
 
 
@@ -147,6 +164,30 @@ class Paquetetransporte
     }
 
     /**
+     * Set lugardestino
+     *
+     * @param string $lugardestino
+     *
+     * @return Paquetetransporte
+     */
+    public function setLugardestino($lugardestino)
+    {
+        $this->lugardestino = $lugardestino;
+
+        return $this;
+    }
+
+    /**
+     * Get lugardestino
+     *
+     * @return string
+     */
+    public function getLugardestino()
+    {
+        return $this->lugardestino;
+    }
+
+    /**
      * Set idsolicitud
      *
      * @param \Utec\TransporteBundle\Entity\Solicitudtransporte $idsolicitud
@@ -192,5 +233,29 @@ class Paquetetransporte
     public function getIdmunicipiodestino()
     {
         return $this->idmunicipiodestino;
+    }
+
+    /**
+     * Set idmunicipioorigen
+     *
+     * @param \Utec\TransporteBundle\Entity\Ctlmunicipio $idmunicipioorigen
+     *
+     * @return Paquetetransporte
+     */
+    public function setIdmunicipioorigen(\Utec\TransporteBundle\Entity\Ctlmunicipio $idmunicipioorigen = null)
+    {
+        $this->idmunicipioorigen = $idmunicipioorigen;
+
+        return $this;
+    }
+
+    /**
+     * Get idmunicipioorigen
+     *
+     * @return \Utec\TransporteBundle\Entity\Ctlmunicipio
+     */
+    public function getIdmunicipioorigen()
+    {
+        return $this->idmunicipioorigen;
     }
 }
