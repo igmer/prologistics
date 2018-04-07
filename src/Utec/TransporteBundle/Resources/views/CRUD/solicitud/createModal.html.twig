@@ -85,7 +85,7 @@ $(document).ready(function () {
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label>Tipo Vehiculo:</label>
+                    <label>Vehiculo:</label>
                     <select id='tipovehiculo' name='' class="form-control" required>
                         {% for veh in vehiculos %}
                         <option value="{{ veh['id'] }}">{{ veh['placa'] }}</option>

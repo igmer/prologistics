@@ -29,22 +29,23 @@ class DefaultController extends Controller
         $request = $this->getRequest();
         $em->getConnection()->beginTransaction();
 
-        $sql="SELECT * FROM Ctlmunicipio";
+        $sql="selectmunicipio";
         $stm = $this->container->get('database_connection')->prepare($sql);
         $stm->execute();
         $municipios = $stm->fetchAll();
 
-        $sql2="SELECT * FROM Ctldepartamento";
+        $sql2="selectdepartamento";
         $stm2 = $this->container->get('database_connection')->prepare($sql2);
         $stm2->execute();
         $departamentos = $stm2->fetchAll();
 
-        $sql3="SELECT * FROM Ctltipovehiculo";
+        $sql3="selectipovehiculo";
         $stm3 = $this->container->get('database_connection')->prepare($sql3);
         $stm3->execute();
         $tipo = $stm3->fetchAll();
 
-        $sql4="SELECT * FROM ctl_vehiculo";
+        $sql4=" selectvehiculo
+                ";
         $stm4 = $this->container->get('database_connection')->prepare($sql4);
         $stm4->execute();
         $vehiculos = $stm4->fetchAll();

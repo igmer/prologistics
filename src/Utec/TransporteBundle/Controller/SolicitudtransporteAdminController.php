@@ -57,12 +57,8 @@ class SolicitudtransporteAdminController extends CRUDController
         $now = new \DateTime();
 
         if ($form->isSubmitted()) {
-            //$now = new \DateTime();
-            //var_dump($now);exit();
                 $em->getConnection()->beginTransaction();
-
                 try {
-
                     $object->setHorafechareg($now);
                     $object->setIdusuarioreg($user);
                     $object->setActiva(true);
@@ -88,12 +84,7 @@ class SolicitudtransporteAdminController extends CRUDController
                         $solicitudDetalle->setIdmunicipioorigen($origen);
                         $solicitudDetalle->setIdvehiculo($vehiculo);
                         $solicitudDetalle->setIdsolicitud($object);
-
-
-
                         $this->admin->create($solicitudDetalle);
-
-
                     }//fin foreach
                     $em->getConnection()->commit();
                     $this->addFlash(
