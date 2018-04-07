@@ -5,6 +5,7 @@
       <index name="IDX_61B7A11A6A385796" columns="idSolicitud"/>
       <index name="IDX_61B7A11ACC10B87" columns="idMunicipioDestino"/>
       <index name="IDX_61B7A11A4D0C910D" columns="idMunicipioOrigen"/>
+      <index name="IDX_61B7A11A9A593C58" columns="idVehiculo"/>
     </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
@@ -17,6 +18,17 @@
     <field name="entregado" type="boolean" column="entregado" nullable="false"/>
     <field name="apagar" type="float" column="aPagar" precision="24" scale="0" nullable="false"/>
     <field name="lugardestino" type="string" column="lugarDestino" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="claveRastreo" type="string" column="clave_rastreo" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fechaHoraRec" type="datetime" column="fecha_hora_rec" nullable="true"/>
+    <field name="descripcionPaquete" type="string" column="descripcion_paquete" length="250" nullable="true">
       <options>
         <option name="fixed"/>
       </options>
@@ -34,6 +46,11 @@
     <many-to-one field="idmunicipioorigen" target-entity="Ctlmunicipio" fetch="LAZY">
       <join-columns>
         <join-column name="idMunicipioOrigen" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idvehiculo" target-entity="CtlVehiculo" fetch="LAZY">
+      <join-columns>
+        <join-column name="idVehiculo" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

@@ -35,6 +35,7 @@ class CtlempleadoAdmin extends AbstractAdmin
             ->add('apellido')
             ->add('telefono')
             ->add('direccion')
+            ->add('idcategoria')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),

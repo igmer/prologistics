@@ -17,11 +17,10 @@ class SolicitudtransporteAdmin extends AbstractAdmin
     {
         $datagridMapper
 
-            ->add('lugarrecoleccion')
-            ->add('fechahorarecoleccion')
+            ->add('idcliente')
             ->add('horafechareg')
             ->add('activa')
-            ->add('claverastreo')
+
         ;
     }
 
@@ -32,8 +31,8 @@ class SolicitudtransporteAdmin extends AbstractAdmin
     {
         $listMapper
 
-            ->add('lugarrecoleccion')
-            ->add('fechahorarecoleccion',null,
+
+            /*->add('fechahorarecoleccion',null,
                 array(
                   'label'=>'Fecha de Recoleccion ',
 
@@ -48,13 +47,13 @@ class SolicitudtransporteAdmin extends AbstractAdmin
                       'data-date-start-view' => '0'
                   )
               )
-              )
+              )*/
 
-              ->add('idmotorista', null, array(
-                  'label'=>' Motorista'
-              ))
+
+            ->add('idcliente')
             ->add('activa')
-            ->add('claverastreo')
+            ->add('catalogoDetalle')
+
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -72,8 +71,8 @@ class SolicitudtransporteAdmin extends AbstractAdmin
     {
         $formMapper
         ->with('General',array('class' => 'col-lg-6 col-md-6 col-sm-12 col-xs-12'))
-        ->add('lugarrecoleccion')
-        ->add('fechahorarecoleccion',null,
+
+        /*->add('fechahorarecoleccion',null,
             array(
               'label'=>'Fecha de Recoleccion ',
 
@@ -88,22 +87,18 @@ class SolicitudtransporteAdmin extends AbstractAdmin
                   'data-date-start-view' => '0'
               )
           )
-          )
-
-          ->add('idmotorista', null, array(
-              'label'=>' Motorista'
+          )*/
+          ->add('idcliente',null, array(
+              'label'=> 'Cliente',
+              'attr'=>array(
+                  'required'=>true
+              )
           ))
           ->add('activa')
           ->end()
           ->with('Asignar',array('class' => 'col-lg-6 col-md-6 col-sm-12 col-xs-12'))
-          ->add('idprioridad', null, array(
-              'label'=>'Prioridad'
-          ))
-          ->add('idvehiculo',null, array(
-              'label'=>'Marca del vehiculo que solicita'
-          ))
 
-        ->add('claverastreo')
+
         ->end()
         ->with('Paquetes')
                ->add('catalogoDetalle','sonata_type_collection',array('label' =>'Elemento'),
@@ -126,16 +121,30 @@ class SolicitudtransporteAdmin extends AbstractAdmin
             ->add('claverastreo')
         ;
     }
-    public function prePersist($paq) {
-      $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
-      $paq->setIdUsuarioReg($user);
-      $paq->setHoraFechaReg(new \DateTime());
-
-      foreach ($paq->getCatalogoDetalle() as $catalogoDetalle) {
-            $catalogoDetalle->setIdsolicitud($paq);
-            //$catalogoDetalle->setIdUsuarioReg($user);
-            //$catalogoDetalle->setFechaHoraReg(new \DateTime());
-
+    public function getTemplate($name) {
+        switch ($name) {
+            case 'create':
+            return 'UtecTransporteBundle::CRUD/solicitud/create.html.twig';
+            break;
+            /*case 'show':
+            return 'UtecTransporteBundle::CRUD/RecursoHumano/show.html.twig';
+            break;*/
+            default:
+            return parent::getTemplate($name);
+            break;
         }
-  }
+    }
+    public function preUpdate($detalleMonitoreo) {
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $detalleMonitoreo->setIdUsuarioReg($user);
+        $detalleMonitoreo->setHorafechareg(new \DateTime());
+//
+      foreach ($detalleMonitoreo->getCatalogoDetalle() as $detalle) {
+       $detalle->setIdsolicitud($detalleMonitoreo);
+//           $detalle->setIdUsuarioReg($user);
+//            $detalle->setFechaHoraReg(new \DateTime());
+//
+        }
+
+}
 }

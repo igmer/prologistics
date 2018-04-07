@@ -55,12 +55,13 @@ class CtlclienteAdmin extends AbstractAdmin
                 'label'=>'Empresa que Representa'
             ))
             ->add('nombrerepresentante', null,array(
-                'label'=>'NOmbre de Representante'
+                'label'=>'Nombre de Representante'
             ))
             ->add('direccion')
             ->add('telefono')
             ->add('idUsuario', null,array(
-                'label'=>'Usuario'
+                'label'=>'Usuario',
+                'required'=>true
             ))
         ;
     }
@@ -78,4 +79,12 @@ class CtlclienteAdmin extends AbstractAdmin
             ->add('telefono')
         ;
     }
+
+    /*public function prePersist($paq) {
+      $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+      $paq->setIdUsuarioReg($user);
+      $paq->setHoraFechaReg(new \DateTime());
+
+
+  }*/
 }

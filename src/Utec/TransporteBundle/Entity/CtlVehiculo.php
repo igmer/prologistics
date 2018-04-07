@@ -226,6 +226,6 @@ class CtlVehiculo
     }
     public function __toString()
     {
-        return $this -> marca ? $this -> marca:'';
+        return $this -> placa ? $this -> placa:'';
     }
 }

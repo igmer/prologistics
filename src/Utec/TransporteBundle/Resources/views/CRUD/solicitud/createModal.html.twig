@@ -1,0 +1,114 @@
+{% block about_content %}
+<script type="text/javascript">
+
+$(document).ready(function () {
+    var vehiculo =$('#vehiculo')
+    var origen2  =$('#origen2')
+
+    var select2Options = {
+        placeholder: 'Seleccionar..',
+        allowClear: true};
+
+        initializeSelect2($('#origen2'), true, false, {
+            placeholder: 'Seleccionar Origen...',
+            allowClear: false,
+            width: '100%'
+        });
+        initializeSelect2($('#destino'), true, false, {
+            placeholder: 'Seleccionar Destino...',
+            allowClear: false,
+            width: '100%'
+        });
+        initializeSelect2($('#tipovehiculo'), true, false, {
+            placeholder: 'Seleccionar Tipo Vehiculo...',
+            allowClear: false,
+            width: '100%'
+        });
+
+
+}); //fin dek document ready
+
+</script>
+
+<div class="box  box-primary">
+
+    <div class="box-header">
+    </button>
+</div>
+<form id="newMonitoreo" action="javascript:void(0);">
+    <div class="box-body">
+
+        <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <label>Descripcion del Paquete:</label>
+                        <input type="text" class="form-control" id="paquete" name="paquete" required>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+
+                <div class="form-group  has-feedback">
+                    <label>Origen:</label>
+                    <select id="origen2" name="origen2" class="form-control" required>
+                        {% for mun in municipios %}
+                        <option value="{{ mun['id'] }}">{{ mun['nombre'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="form-group">
+                    <label>Lugar de recoleccion:</label>
+                    <input type="text" class="form-control" id="recoleccion" name="recoleccion"min="0">
+                </div>
+                <div class="form-group">
+                    <label>Municipio Destino:</label>
+                    <select id='destino' name='destino' class="form-control" required>
+                        {% for mun in municipios %}
+                        <option value="{{ mun['id'] }}">{{ mun['nombre'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Direccion de Destino:</label>
+                    <input type="text" class="form-control" id="dirdestino" name="dirdestino" min="0">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tipo Vehiculo:</label>
+                    <select id='tipovehiculo' name='' class="form-control" required>
+                        {% for veh in tipo %}
+                        <option value="{{ veh['id'] }}">{{ veh['tipoVehiculo'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <label>Tipo Vehiculo:</label>
+                    <select id='tipovehiculo' name='' class="form-control" required>
+                        {% for veh in vehiculos %}
+                        <option value="{{ veh['id'] }}">{{ veh['placa'] }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label>Total a pagar:</label>
+                    <input type="number" class="form-control" id="apagar" name="apagar" min="0">
+                </div>
+                <div class="form-group" style="display:none">
+                    <label>Clave Rastreo</label>
+                    <input type="text" class="form-control" id="clave" name="clave" min="0">
+                </div>
+            </div>
+
+
+
+    </div>
+</div>
+</form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,316 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{% block javascripts %}
+{{ parent() }}
+    <script type="text/javascript">
+        var respuesta=null;
+        var rowNum = 0;
+        var numeroFila=null;
+
+        $(document).ready(function () {
+            var detalleMigrante =$('#detalleMigrante');
+
+
+        var idCliente=$('#{{ admin.uniqid }}_idcliente');
+        var linkModal=$('#addMonitoreoDetalle');
+        var boton=$('#btn_create_and_list');
+        /*Funcion que sirve para inciar una modal*/
+        modal_elements.push({
+            id: 'addMonitoreoDetalle',//bonton que la inicaliza
+            func: 'getModalDetalleMonitoreo',
+            header: 'Agregar Paquete',
+            footer: '<button type="button" id ="agregarDetalle" class="btn btn-flat btn-success btn-save-coupon-ref" onClick="agregarDetalle()"><span class="fa fa-save"></span>Agregar Paquete</button>',
+            widthModal: '100%',
+            maxWidth: '900px',
+            closeXBtn: true,
+            closeBtnName: '<span class="fa fa-ban"></span> Cancelar',
+            closeBtnClass: 'btn-danger btn-flat',
+            afterLoadCallFunction: 'inicializarDetalleMonitoreo'
+        });
+        //funcion que llama la modal para editar
+        modal_elements.push({
+            id: 'editFila',
+            func: 'obtenerModalEditActividad',
+            header: 'Editar Actividad',
+            footer: '<button type="button" class="btn btn-flat btn-success btn-save-coupon-ref" onClick="editActividadModal()"><span class="fa fa-save"></span>Agregar</button>',
+            widthModal: '84%',
+            maxWidth: '740px',
+            closeXBtn: false,
+            closeBtnName: '<span class="fa fa-ban"></span> Cancelar',
+            closeBtnClass: 'btn-danger btn-flat'
+        });
+        //inicilizando los select2
+        var select2Options = {
+            placeholder: 'Seleccionar..',
+            allowClear: true
+        };
+        initializeSelect2(idCliente, true,false , {
+            placeholder: 'Seleccione un cliente',
+            allowClear: false,
+            width: '100%'
+        });//fin de inicializar dfin de inializar municipio
+
+    });//fin document ready
+    var apagar= 0;
+
+        function agregarDetalle(){
+        var hasErrors = $('#newMonitoreo').validator('validate').has('.has-error').length;
+        if (hasErrors){
+            showDialogMsg('Campos Requeridos', 'Por favor complete los campos requridos', 'dialog-error');
+            //lanzarAlerta("Atencion","Llene los campos indicados",2);
+            return false;
+
+        }
+        //inicializarDetalleMonitoreo();
+        var detalleMigrante = $('#detalleMigrante');
+        var paquete = $('#paquete').val();
+        var origen= $('#origen2')
+        var origen = origen.val()
+        var origenTxt =$('#origen2').select2('data').text;
+        var destino= $('#destino')
+        var destino = destino.val()
+        var destinoTxt =$('#destino').select2('data').text;
+        var recoleccion =$('#recoleccion')
+        var recoleccion= recoleccion.val();
+        var dirdestino =$('#dirdestino').val()
+        var recoleccion=$('#recoleccion').val();
+        var dirdestino = $('#dirdestino').val();
+        var tipovehiculo = $('#tipovehiculo');
+        var tipovehiculoTxt =tipovehiculo.select2('data').text;
+        var vehiculo = $('#vehiculo').val();
+        var apagar = Math.round(Math.random()*150);
+        var clave=makeid(clave)
+        //var clave = $('#clave').val()
+        alert(clave)
+        rowNum++;
+        var t = detalleMigrante.DataTable();
+        t.row.add( [
+
+            '<a class="btn btn-danger btn-sm" id="idEliminarFila'+rowNum+'" title="Eliminar" onClick="deleteRow('+rowNum+')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>',
+            '<input type="hidden" id="paquete'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][paquete]" value="'+paquete+'"/><p id="ppaquete'+rowNum+'">'+paquete+'</p>',
+            '<input type="hidden" id="origen'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][origen]" value="'+origen+'"/><p id="porigen'+rowNum+'">'+origenTxt+'</p>',
+            '<input type="hidden" id="recoleccion'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][recoleccion]" value="'+recoleccion+'" /><p id="precoleccion'+rowNum+'">'+recoleccion+'</p>',
+            '<input type="hidden" id="destino'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][destino]" value="'+destino+'" /><p id="pdestino'+rowNum+'">'+destinoTxt+'</p>' ,
+
+            '<input type="hidden" id="dirdestino'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][dirdestino]" value="'+dirdestino+'" /><p id="pdirdestino'+rowNum+'">'+dirdestino+'</p>',
+            '<input type="hidden" id="tipovehiculo'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][tipovehiculo]" value="'+tipovehiculo+'" /><p id="ptipoVehiculo'+rowNum+'">'+tipovehiculoTxt+'</p>',
+            '<input type="hidden" id="apagar'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][apagar]" value="'+apagar+'" /><p id="papagar'+rowNum+'">'+"$"+apagar+'</p>',
+            '<input type="hidden" id="clave'+rowNum+'" name="datosMonitoreo[add][row'+rowNum+'][clave]" value="'+clave+'" /><p id="pclave'+rowNum+'">'+clave+'</p>'
+        ] ).draw( false );
+        //$('#tr-empty-legend').remove();
+        totalCount++;
+        $('#totalCount').val(totalCount);
+        $('#myModal').modal("hide");
+        $('#newMonitoreo').validator('destroy');
+
+    }
+    function makeid(clave) {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    }
+
+
+
+
+
+
+    function getModalDetalleMonitoreo(){
+            jQuery.ajax({
+            //url: Routing.generate("obtenerModalActividadPrevencion")+ '?idPromotor='+idPromotorAnti,
+            url: Routing.generate("obtenerModalDetalleMonitoreo"),
+            type: 'GET',
+            async: false,
+            dataType: 'html',
+            success: function (result) {
+                respuesta=result;
+            }
+        });
+
+        return respuesta;
+    }
+
+    window.inicializarDetalleMonitoreo = function() {
+
+    }
+
+    function editActividad(fila){
+      //Establesco el numero de fila en mi variable global
+      numeroFila=fila;
+      return false;
+    }
+    function deleteRow(fila){
+
+        var objeto=$('#idEliminarFila'+fila);
+        var idPais = $('#idPais'+fila).val();
+        var table = $('#detalleMigrante').DataTable();
+        table.row( objeto.parents('tr') ).remove().draw();
+        //Elimino el id del caserio de la fila a Eliminar
+        var pos = idPaises.indexOf(idPais);
+        idPaises.splice(pos, 1);
+        var longitud=idPaises.length;
+        if(longitud==0){
+            var idMunicipio=$('#{{ admin.uniqid }}_idMunicipio');
+            var fecha=$('#{{ admin.uniqid }}_fecha');
+            idMunicipio.removeAttr('disabled');
+            fecha.removeAttr('disabled');
+        }
+        return false;
+    }
+
+    </script>
+
+
+{% endblock %}
+
+
+{% block form %}
+    {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {% set url = admin.id(object) is not null ? 'edit' : 'create' %}
+
+    {% if not admin.hasRoute(url)%}
+    <div>
+        {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+    </div>
+    {% else %}
+    <form
+    {% if sonata_admin.adminPool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+    role="form"
+    action="{% block sonata_form_action_url %}{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}{% endblock %}"
+    {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
+    method="POST"
+    {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+    {% block sonata_form_attributes %}{% endblock %}
+    >
+
+{{ include('SonataAdminBundle:Helper:render_form_dismissable_errors.html.twig') }}
+
+{% block sonata_pre_fieldsets %}
+<div class="row">
+    {% endblock %}
+    <!--este es el formulario completo que se hereda -->
+    {# {{ form_rest(form) }} #}
+
+            {#aqui se estan llamando los campos en el orden que se necesitan #}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4 class="box-title text-center"> Formulario para ingresar un solicitud de transporte
+                </h4>
+            </div>
+            <div class="box-body">
+                <div id="primero"></div>
+                <div class="sonata-ba-collapsed-fields">
+
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <div class="form-group">
+
+                                    {{ form_row(form.idcliente) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Boton que lanza la modal-->
+<div class="row-fluid" style="margin-top: 10px;">
+    <div class="span12" align="right">
+        <!--<button type="button" id="agregarModal" class="btn btn-success btn-sm" data-toggle="modal" data-target="#miModal" disabled><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Detalle</button>-->
+        <a href="#myModal" id="addMonitoreoDetalle" class="btn btn-success" title="Agregar Detalle" custom-modal="true" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+              <i class="fa fa-plus-circle" aria-hidden="true">Agregar Detalle</i>
+        </a>
+    </div>
+</div>
+<!-- inicio de la tabla-->
+<div class="row-fluid" style="margin-top: 10px;">
+   <div class="row-fluid" style="margin-top:50px;">
+       <div class=" table-responsive" style="margin-left: 0px;">
+           <table id="detalleMigrante" name="detalleMigrante" class="table table-bordered table-condensed" cellspacing="0" width="100%" data-table-enabled="true">
+               <thead>
+                   <tr>
+                       <th> Opciones </th>
+                       <th> Descripcion Paquete </th>
+                       <th>  Origen</th>
+                       <th> Lugar recoleccion </th>
+                       <th> Municipio Destino</th>
+                       <th> Lugar de Destino </th>
+                       <th> Tipo de Vehiculo</th>
+
+                       <th> Total a Pagar</th>
+                       <th> Clave de Rastreo</th>
+
+                   </tr>
+
+               </thead>
+                <tbody id="content-tbody">
+                </tbody>
+            </table>
+            <input id="totalCount" name="totalCount" type="hidden" value="0" />
+        </div>
+   </div>
+
+{% block formactions %}
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        {% block sonata_form_actions %}
+            {% if app.request.isxmlhttprequest %}
+                {% if admin.id(object) is not null %}
+                    <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                {% else %}
+                    <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                {% endif %}
+            {% else %}
+                {% if admin.supportsPreviewMode %}
+                    <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+                    </button>
+                {% endif %}
+                {% if admin.id(object) is not null %}
+                    <button type="submit" class="btn btn-success"  name="btn_update_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+
+                    {% if admin.hasRoute('list') and admin.hasAccess('list') %}
+                        <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i> {{ 'btn_update_and_return_to_list'|trans({}, 'SonataAdminBundle') }}</button>
+                    {% endif %}
+
+                    {% if admin.hasRoute('delete') and admin.hasAccess('delete', object) %}
+                        {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                        <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+                    {% endif %}
+
+                    {% if admin.isAclEnabled() and admin.hasRoute('acl') and admin.hasAccess('acl', object) %}
+                        <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users" aria-hidden="true"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                    {% endif %}
+                {% else %}
+
+                    {% if admin.hasroute('list') and admin.hasAccess('list') %}
+                        <button type="submit" class="btn btn-success" name="btn_create_and_list" id ="btn_create_and_list"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i> {{ 'btn_create_and_return_to_list'|trans({}, 'SonataAdminBundle') }}</button>
+                    {% endif %}
+                    <button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create_and_create_a_new_one'|trans({}, 'SonataAdminBundle') }}</button>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock formactions %}
+    </form>
+    {% endif %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin, 'object': object }) }}
+    <!-- Codigo para lanzar la modal -->
+
+{% endblock %}

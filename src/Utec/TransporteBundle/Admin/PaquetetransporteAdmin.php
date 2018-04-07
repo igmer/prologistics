@@ -31,15 +31,31 @@ class PaquetetransporteAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('idmunicipiodestino', null, array(
-                'label'=>'Municipio de Destino'
+            ->add('descripcionPaquete')
+            ->add('idmunicipioorigen', null, array(
+                'label'=>'Municipio de Origen'
             ))
             ->add('direcciondestino', null, array(
+                'label'=>' Direccion Referencia'
+                     ))
+
+            //->add('claveRastreo')
+            ->add('lugardestino', null, array(
                 'label'=>'Direccion Destino'
             ))
+            ->add('idmunicipiodestino', null, array(
+                'label'=>'Municipio Destino'
+            ))
+            ->add('idvehiculo', null, array(
+                'label'=>'Vehiculo Asignado'
+            ))
+
             ->add('entregado')
             ->add('apagar', null, array(
                 'label'=>'Total a pagar'
+            ))
+            ->add('claveRastreo', null, array(
+                'label'=>'Clave de Rastreo'
             ))
         ;
     }

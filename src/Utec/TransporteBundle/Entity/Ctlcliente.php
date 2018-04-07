@@ -38,7 +38,7 @@ class Ctlcliente
     /**
      * @var string
      *
-     * @ORM\Column(name="direccion", type="string", length=1, nullable=false)
+     * @ORM\Column(name="direccion", type="string", length=200, nullable=false)
      */
     private $direccion;
 
@@ -192,6 +192,6 @@ class Ctlcliente
     }
     public function __toString()
     {
-        return $this -> nombrerepresentante ? $this -> nombrerepresentante:'';
+        return $this -> nombreempresa ? $this -> nombreempresa:'';
     }
 }

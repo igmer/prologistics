@@ -30,11 +30,17 @@ class CtlVehiculoAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-
-            ->add('modelo')
             ->add('marca')
+            ->add('modelo')
+            ->add('idtipovehiculo','text', array(
+                'label'=>'Tipo Vehiculo'
+            ))
+            
             ->add('placa')
-            ->add('pesomax')
+            ->add('pesomax',null, array(
+                'label'=>'Peso Max. (Kg)'
+            ))
+
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -57,11 +63,18 @@ class CtlVehiculoAdmin extends AbstractAdmin
             ->end()
             ->with('N° Placa y Peso Maximo',array('class' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12'))
                 ->add('placa')
-                ->add('pesomax')
+                ->add('pesomax', null, array(
+                    'label'=>'Peso Maximo (Kg)'
+                ))
             ->end()
             ->with('Estado y Tipo Vehiculo',array('class' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12'))
-            ->add('idEstado')
-            ->add('idtipovehiculo')
+            ->add('idEstado', null, array(
+                'label'=>'Estado'
+            ))
+
+            ->add('idtipovehiculo', null, array(
+                'label'=>'Tipo de Vehiculo'
+            ))
             ->end()
         ;
     }
