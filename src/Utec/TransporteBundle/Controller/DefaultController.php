@@ -28,7 +28,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
         $em->getConnection()->beginTransaction();
-
+            //consultas a la BD con Stored Procedure
         $sql="selectmunicipio";
         $stm = $this->container->get('database_connection')->prepare($sql);
         $stm->execute();

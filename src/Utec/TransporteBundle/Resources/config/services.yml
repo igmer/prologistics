@@ -48,7 +48,7 @@ services:
         class: Utec\TransporteBundle\Admin\SolicitudtransporteAdmin
         arguments: [~, Utec\TransporteBundle\Entity\Solicitudtransporte, UtecTransporteBundle:SolicitudtransporteAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: TS-1-Solicitud, label: Solicitudtransporte }
+            - { name: sonata.admin, manager_type: orm, group: TS-1-Solicitud, label: Solicitud Transporte }
 
     utec_transporte.admin.paquetetransporte:
         class: Utec\TransporteBundle\Admin\PaquetetransporteAdmin

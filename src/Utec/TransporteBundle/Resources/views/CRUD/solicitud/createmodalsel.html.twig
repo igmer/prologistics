@@ -5,6 +5,30 @@ $(document).ready(function () {
     //var vehiculo =$('#vehiculo')
     var origen2  =$('#origen2')
 
+    var select2Options = {
+        placeholder: 'Seleccionar..',
+        allowClear: true};
+
+        initializeSelect2($('#origen2'), true, false, {
+            placeholder: 'Seleccionar Origen...',
+            allowClear: false,
+            width: '100%'
+        });
+        initializeSelect2($('#destino'), true, false, {
+            placeholder: 'Seleccionar Destino...',
+            allowClear: false,
+            width: '100%'
+        });
+        initializeSelect2($('#tipovehiculo'), true, false, {
+            placeholder: 'Seleccionar Tipo Vehiculo...',
+            allowClear: false,
+            width: '100%'
+        });
+        initializeSelect2($('#vehiculo'), true, false, {
+            placeholder: 'Seleccionar Vehiculo...',
+            allowClear: false,
+            width: '100%'
+        });
 
 }); //fin dek document ready
 
@@ -36,8 +60,11 @@ $(document).ready(function () {
                 </div>
                 <div class="form-group has-feedback">
                     <label>Municipio Destino:</label>
-                    <input type="text" id='destino' name='destino' class="form-control" required>
-
+                    <select id='destino' name='destino' class="form-control" required>
+                        {% for mun in municipios %}
+                        <option value="{{ mun['id'] }}">{{ mun['nombre'] }}</option>
+                        {% endfor %}
+                    </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -50,15 +77,21 @@ $(document).ready(function () {
             <div class="col-md-6">
                 <div class="form-group has-feedback">
                     <label>Tipo Vehiculo:</label>
-                    <input type="text" id='tipovehiculo' name='' class="form-control" required>
-
+                    <select id='tipovehiculo' name='' class="form-control" required>
+                        {% for veh in tipo %}
+                        <option value="{{ veh['id'] }}">{{ veh['tipoVehiculo'] }}</option>
+                        {% endfor %}
+                    </select>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
 
                 <div class="form-group has-feedback">
                     <label>Vehiculo:</label>
-                    <input type="text" id='vehiculo' name='vehiculo' class="form-control" required>
-
+                    <select id='vehiculo' name='vehiculo' class="form-control" required>
+                        {% for veh in vehiculos %}
+                        <option value="{{ veh['id'] }}">{{ veh['placa'] }}</option>
+                        {% endfor %}
+                    </select>
 
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>

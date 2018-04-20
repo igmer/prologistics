@@ -124,11 +124,11 @@ class SolicitudtransporteAdmin extends AbstractAdmin
     public function getTemplate($name) {
         switch ($name) {
             case 'create':
-            return 'UtecTransporteBundle::CRUD/solicitud/create.html.twig';
+            return 'UtecTransporteBundle::CRUD/solicitud/createsel.html.twig';
             break;
-            /*case 'show':
-            return 'UtecTransporteBundle::CRUD/RecursoHumano/show.html.twig';
-            break;*/
+            case 'show':
+            return 'UtecTransporteBundle::CRUD/solicitud/show.html.twig';
+            break;
             default:
             return parent::getTemplate($name);
             break;

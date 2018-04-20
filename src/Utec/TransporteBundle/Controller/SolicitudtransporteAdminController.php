@@ -67,12 +67,12 @@ class SolicitudtransporteAdminController extends CRUDController
                     $arrayMonitoreo=$request->get('datosMonitoreo');
                     foreach ($arrayMonitoreo['add'] as $key => $row) {
 
-                        $origen=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById( $row ['origen']);
+                        $origen=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById(4);
                         $solicitudDetalle = new Paquetetransporte();
 
-                        $origen=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById( $row ['origen']);
-                        $destino=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById( $row ['destino']);
-                        $vehiculo=$em ->getRepository('UtecTransporteBundle:CtlVehiculo')->findOneById(9);
+                        //$origen=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById( $row ['origen']);
+                        $destino=$em ->getRepository('UtecTransporteBundle:Ctlmunicipio')->findOneById( 5);
+                        $vehiculo=$em ->getRepository('UtecTransporteBundle:CtlVehiculo')->findOneById(6);
                         $solicitudDetalle->setApagar($row['apagar']);
                         $solicitudDetalle->setDescripcionPaquete($row['paquete']);
                         $solicitudDetalle->setClaveRastreo($row['clave']);

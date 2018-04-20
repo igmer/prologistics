@@ -1,0 +1,146 @@
+{% extends 'SonataAdminBundle:CRUD:show.html.twig' %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+$(document).ready(function(){
+    var idSibasi= $('#{{ admin.uniqid }}_idSibasi');
+    var idDepartamento= $('#{{ admin.uniqid }}_idDepartamento');
+    var fecha= $('#{{ admin.uniqid }}_fecha');
+    idDepartamento
+
+    var countDetalle = 0;
+
+    {% if object.getCatalogoDetalle() is not null and object.getCatalogoDetalle()|length > 0 %}
+
+    {% for detalle in object.getCatalogoDetalle() %}
+    var parameters = [];
+
+    parameters['descripcion']    = '{{ detalle.getDescripcionPaquete() }}';
+    parameters['destino']     = '{{ detalle.getDirecciondestino()  }}';
+    parameters['lugard']       = '{{ detalle.getLugardestino()  }}';
+    parameters['vehiculo']     = '{{ detalle.getIdvehiculo()  }}';
+    parameters['lorigen'] = '{{ detalle.getDirecciondestino()  }}';
+    parameters['apagar'] = '{{ detalle.getApagar()  }}';
+    parameters['clave'] = '{{ detalle.getClaveRastreo()  }}';
+    parameters['munorigen']  = '{{ detalle.getIdmunicipioorigen()  }}';
+    parameters['mundestino'] = '{{ detalle.getIdmunicipiodestino()  }}';
+    var row = getCatalogoDetalle(parameters );
+    $('#content-tbody').append(row);
+
+    {% endfor %}
+
+    {% endif %}
+
+    function getCatalogoDetalle(parameters) {
+    var caserio= parameters['descripcion']
+    var campamento= parameters['munorigen']
+    var pais= parameters['lugard']
+    var frontera= parameters['mundestino']
+    var fActual= parameters['lorigen']
+    var fReciente= parameters['tipovehiculo']
+    var fTardio= parameters['vehiculo']
+    var gGruesa= parameters['total']
+    var gGPositiva= parameters['clave']
+    var txC= parameters['apagar']
+    var txP= parameters['txPreventivo']
+    var obs= parameters['observacion']
+    var Cmigrante= parameters['cantidaMigrante']
+
+
+
+        var row =
+        '<tr id="rowDetalle'+countDetalle+'">'+
+        '<td class="">'+caserio+'</td>'+
+        '<td class="">'+campamento+'</td>'+
+        '<td class="">'+pais+'</td>'+
+        '<td class="">'+frontera+'</td>'+
+        '<td class="">'+fActual+'</td>'+
+        '<td class="">'+fReciente+'</td>'+
+        '<td class="">'+fTardio+'</td>'+
+        '<td class="">'+'$'+txC+'</td>'+
+        '<td class="">'+gGPositiva+'</td>'+
+
+
+        '</tr>';
+
+        return row;
+    }
+
+});
+
+</script>
+{% endblock javascripts %}
+{% block show %}
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header">
+                    <h4 class="box-title"> Detalle de Solicitud de Transporte
+                    </h4>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+
+                                <h4>Cliente: {{ object.idcliente() }}</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class=" sonata-ba-field sonata-ba-field-standard-natural  ">
+                                <h4>Fecha de Solicitud {% block field %}
+                                    {{ object.horafechareg|date("d-m-Y",'America/El_Salvador') }}
+
+                                {% endblock %}</h4>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="sonata-ba-collapsed-fields">
+                    </div>
+                </div>
+
+
+
+                <div class="row-fluid" style="margin-top: 10px;">
+                    <div class="row-fluid" style="margin-top:50px;">
+                        <div class="span12 table-responsive" style="margin-left: 0px;">
+                            <table id="detalleMonitoreo" name="detalleMonitoreo" class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Descripcion Paquete</th>
+                                        <th class="text-left">Municipio de Origen</th>
+                                        <th class="text-left">Lugar de Origen</th>
+                                        <th class="text-left">Municipio Destino</th>
+                                        <th class="text-left">Lugar de destino </th>
+                                        <th class="text-left">Tipo Vehiculo</th>
+                                        <th class="text-left">Vehiculo</th>
+                                        <th class="text-left">Total a Pagar</th>
+                                        <th class="text-left">Clave de Rastreo</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="content-tbody">
+
+                                </tbody>
+                            </table>
+                            <input id="totalCount" name="totalCount" type="hidden" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br><br><br>
+
+
+</div>
+
+{% endblock %}
