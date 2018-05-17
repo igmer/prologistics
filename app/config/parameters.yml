@@ -5,7 +5,7 @@ parameters:
     database_port: 1433
     database_name: prolo
     database_user: sa
-    database_password: Fernando$1304
+    database_password: utec$2018
     mailer_transport: smtp
     mailer_host: null
     mailer_encryption: ssl

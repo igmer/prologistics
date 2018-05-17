@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class SolicitudtransporteAdmin extends AbstractAdmin
 {
@@ -147,4 +148,8 @@ class SolicitudtransporteAdmin extends AbstractAdmin
         }
 
 }
+protected function configureRoutes(RouteCollection $collection) {
+
+        $collection->add('reporte');
+    }
 }

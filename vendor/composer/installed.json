@@ -2415,8 +2415,8 @@
     },
     {
         "name": "leaseweb/doctrine-pdo-dblib",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "target-dir": "Lsw/DoctrinePdoDblib",
         "source": {
             "type": "git",

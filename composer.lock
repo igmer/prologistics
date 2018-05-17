@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce73132fde76319582391912ac843aae",
+    "content-hash": "6e2d85db3b44a72d63a3821926974c02",
     "packages": [
         {
             "name": "bitgrave/barcode-bundle",
@@ -2346,7 +2346,7 @@
         },
         {
             "name": "leaseweb/doctrine-pdo-dblib",
-            "version": "dev-master",
+            "version": "1.1.0",
             "target-dir": "Lsw/DoctrinePdoDblib",
             "source": {
                 "type": "git",
@@ -5122,8 +5122,7 @@
         "knplabs/knp-menu-bundle": 20,
         "genemu/form-bundle": 20,
         "shtumi/useful-bundle": 20,
-        "knplabs/knp-time-bundle": 20,
-        "leaseweb/doctrine-pdo-dblib": 20
+        "knplabs/knp-time-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

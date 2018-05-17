@@ -136,4 +136,10 @@ class SolicitudtransporteAdminController extends CRUDController
         ), null);
     }
 
+    public function reporteAction()
+{
+  return $this->render('UtecTransporteBundle::CRUD/reporte.html.twig');
+}
+
+
 }

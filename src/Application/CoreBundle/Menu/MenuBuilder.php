@@ -14,7 +14,7 @@ class MenuBuilder extends ContainerAware {
                          'AG' => array('label' => 'Administracion General' , 'icon' => 'fa fa-cog'),
                          'TS' => array('label' => 'Solicitud' , 'icon' => 'fa fa-file'),
                          'SO' => array('label' => 'Solicitud' , 'icon' => 'fa fa-flag'),
-                         'OT' => array('label' => 'Orden de Trabajo' , 'icon' => 'fa fa-wrench'),
+                         'RP' => array('label' => 'Reportes' , 'icon' => 'fa fa-wrench'),
                          'MP' => array('label' => 'Mantto. Preventivo' , 'icon' => 'fa fa-calendar'),
                          'US' => array('label' => 'Usuario' , 'icon' => 'fa fa-user'));
 
@@ -109,5 +109,11 @@ class MenuBuilder extends ContainerAware {
             $this->menu['Identificación Paciente']->addChild('Registrar Emergencia', array('route' => 'admin_minsal_siaps_mntpaciente_buscaremergencia'));
             $this->menu['Reporte']->addChild('Emergencias por Fecha', array('route' => 'admin_minsal_seguimiento_secemergencia_resumen_emergencia'));
         }*/
+        if($user->hasRole('ROLE_MINSAL_MALARIA_ADMIN_CLAVE_ALL') || $user->hasRole('ROLE_SUPER_ADMIN')){
+    if (!$this->menu['Reportes']){
+            $this->menu->addChild($this->cat['RP']['label'])->setAttribute('dropdown', true)->setAttribute('icon', $this->cat['RP']['icon']);
+    }
+    $this->menu['Reportes']->addChild('Reporte Solicitudes', array('route' => 'admin_utec_transporte_solicitudtransporte_reporte'));
+}
     }
 }

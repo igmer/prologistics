@@ -49,7 +49,7 @@
         "jms/serializer-bundle": "v1.2.0",
         "jms/di-extra-bundle": "1.8.*",
         "genemu/form-bundle": "2.2.*@dev",
-        "leaseweb/doctrine-pdo-dblib": "1.0.*@dev",
+        "leaseweb/doctrine-pdo-dblib": "^1.1",
 
 
         "shtumi/useful-bundle": "dev-master",

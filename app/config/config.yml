@@ -54,7 +54,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-      #  driver: "%database_driver%"
+       # driver: "%database_driver%"
         driver_class:   Lsw\DoctrinePdoDblib\Doctrine\DBAL\Driver\PDODblib\Driver
         host:     "%database_host%"
         port:     "%database_port%"
